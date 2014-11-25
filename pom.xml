@@ -28,7 +28,7 @@
         <hibernate.version>4.3.7.Final</hibernate.version>
 
         <!-- Jackson json mapper -->
-        <jackson.version>2.4.3</jackson.version>
+        <jackson.version>2.4.4</jackson.version>
 
         <!-- JSR-303 validation -->
         <javax.validator.version>1.1.0.Final</javax.validator.version>
