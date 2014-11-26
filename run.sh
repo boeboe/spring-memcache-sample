@@ -7,8 +7,11 @@
 
 export PORT='9090'
 export BROWSER_URL='http://localhost:'${PORT}'/rest/persons'
+export BROWSER_URL_CACHE='http://localhost:'${PORT}'/rest/cache-persons'
 
-sleep 10 && firefox ${BROWSER_URL} &> /dev/null &
+sleep 10 
+firefox ${BROWSER_URL} &> /dev/null &
+firefox ${BROWSER_URL_CACHE} &> /dev/null &
 
 
 java -jar target/dependency/jetty-runner.jar --port ${PORT} target/*.war
