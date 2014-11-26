@@ -78,6 +78,7 @@ public class MemCacheConfig extends CachingConfigurerSupport {
 
         SpymemcachedConfiguration cacheConfiguration = new SpymemcachedConfiguration();
         cacheConfiguration.setConsistentHashing(true);
+        cacheConfiguration.setUseBinaryProtocol(true);
 
         // Authentication only applicable on Heroku cloud platform
         if (!StringUtils.isEmpty(USERNAME) && !StringUtils.isEmpty(PASSWORD)) {
