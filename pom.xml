@@ -53,6 +53,9 @@
         <!-- Memcached Client -->
         <simple-spring-memcached.version>3.5.1-SNAPSHOT</simple-spring-memcached.version>
 
+        <!-- EHCache -->
+        <ehcache.version>2.9.0</ehcache.version>
+
         <!-- Testing  -->
         <junit.version>4.11</junit.version>
 
@@ -83,6 +86,11 @@
             <version>${springframework-version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa.version}</version>
@@ -92,6 +100,7 @@
             <artifactId>spring-hateoas</artifactId>
             <version>${spring-hateoas.version}</version>
         </dependency>
+
 
         <!-- Hibernate -->
         <dependency>
@@ -186,6 +195,13 @@
             <groupId>com.google.code.simple-spring-memcached</groupId>
             <artifactId>spymemcached-provider</artifactId>
             <version>${simple-spring-memcached.version}</version>
+        </dependency>
+
+        <!-- EHCache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
 
         <!-- Testing  -->

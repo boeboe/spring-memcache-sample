@@ -1,7 +1,7 @@
 package be.example.backend.web;
 
-import be.example.backend.domain.Person;
-import be.example.backend.service.PersonService;
+import be.example.backend.domain.CachePerson;
+import be.example.backend.service.CachePersonService;
 import com.google.common.base.Function;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
@@ -22,52 +22,52 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
  * Created by vanbosb on 25/11/14.
  */
 @RestController
-@RequestMapping("/persons")
-public class PersonController {
+@RequestMapping("/cache-persons")
+public class CachePersonController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CachePersonController.class);
 
-    public static Function<Person, Person> addLinks = new Function<Person, Person>() {
+    public static Function<CachePerson, CachePerson> addLinks = new Function<CachePerson, CachePerson>() {
         @Override
-        public Person apply(Person input) {
+        public CachePerson apply(CachePerson input) {
             addLinks(input);
             return input;
         }
     };
 
     @Autowired
-    private PersonService personService;
+    private CachePersonService cachePersonService;
 
-    public static void addLinks(Person person) {
-        if (null != person) {
-            person.add(linkTo(PersonController.class).slash(person.getPersonId()).withSelfRel());
+    public static void addLinks(CachePerson cachePerson) {
+        if (null != cachePerson) {
+            cachePerson.add(linkTo(CachePersonController.class).slash(cachePerson.getCachePersonId()).withSelfRel());
         }
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Person> getPersons() {
+    public List<CachePerson> getCachePersons() {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        List<Person> personList = personService.findAll();
+        List<CachePerson> cachePersonList = cachePersonService.findAll();
         stopwatch.stop();
         long millis = stopwatch.elapsed(TimeUnit.MILLISECONDS);
 
-        for (Person person : personList) {
-            person.setFetchTime(millis);
+        for (CachePerson cachePerson : cachePersonList) {
+            cachePerson.setFetchTime(millis);
         }
 
-        return Lists.transform(personList, addLinks);
+        return Lists.transform(cachePersonList, addLinks);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Person getPersonById(@PathVariable Long id) {
+    public CachePerson getCachePersonById(@PathVariable Long id) {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        Person person = personService.findById(id);
+        CachePerson cachePerson = cachePersonService.findById(id);
         stopwatch.stop();
         long millis = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-        person.setFetchTime(millis);
+        cachePerson.setFetchTime(millis);
 
-        addLinks(person);
-        return person;
+        addLinks(cachePerson);
+        return cachePerson;
     }
 
 }

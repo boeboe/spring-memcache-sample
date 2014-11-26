@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "person")
-public class Person extends ResourceSupport implements Serializable {
+public class CachePerson extends ResourceSupport implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +35,10 @@ public class Person extends ResourceSupport implements Serializable {
     /**
      * Default constructor.
      */
-    public Person() {
+    public CachePerson() {
     }
 
-    public Long getPersonId() {
+    public Long getCachePersonId() {
         return id;
     }
 
@@ -65,7 +65,7 @@ public class Person extends ResourceSupport implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "CachePerson{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

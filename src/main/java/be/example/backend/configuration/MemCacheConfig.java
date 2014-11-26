@@ -8,10 +8,8 @@ import com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl;
 import com.google.code.ssm.providers.spymemcached.SpymemcachedConfiguration;
 import com.google.code.ssm.spring.SSMCache;
 import com.google.code.ssm.spring.SSMCacheManager;
-
 import net.spy.memcached.auth.AuthDescriptor;
 import net.spy.memcached.auth.PlainCallbackHandler;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -24,22 +22,21 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
 import javax.security.auth.callback.CallbackHandler;
-
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by vanbosb on 22/11/14.
- * This configuration set up only SSM artifacts/beans required by Spring Cache.
- * To use SSM annotations more beans have to be created (all *CacheAdvice aspects).
- *
- * For more example code see:
- * http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/cache/annotation/EnableCaching.html
- */
+* Created by vanbosb on 22/11/14.
+* This configuration set up only SSM artifacts/beans required by Spring Cache.
+* To use SSM annotations more beans have to be created (all *CacheAdvice aspects).
+* <p/>
+* For more example code see:
+* http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/cache/annotation/EnableCaching.html
+*/
 @PropertySource("classpath:cache.properties")
 @Configuration
 @EnableCaching
-public class CacheConfig extends CachingConfigurerSupport {
+public class MemCacheConfig extends CachingConfigurerSupport {
 
     private static final String USERNAME = System.getenv("MEMCACHIER_USERNAME");
     private static final String PASSWORD = System.getenv("MEMCACHIER_PASSWORD");
@@ -99,7 +96,7 @@ public class CacheConfig extends CachingConfigurerSupport {
         try {
             return cacheFactory().getObject();
         } catch (Exception e) {
-           throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
