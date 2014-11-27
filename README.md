@@ -108,4 +108,4 @@ In the root of the project a `run.sh` script is provided which start the Spring 
  * [xmemcached](https://github.com/killme2008/xmemcached)
 
 
-Thanks a lot to [ragnor](https://github.com/ragnor) for his support on getting the memcached backends properly configured using Spring java `@Configuration` !
+Thanks a lot to [ragnor](https://github.com/ragnor) for his support on getting the memcached backends properly configured using the Spring Java `@Configuration` approach!
