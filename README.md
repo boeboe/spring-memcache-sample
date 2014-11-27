@@ -3,8 +3,10 @@ Spring Memcache Sample
 
 A small working out of the box sample to demo the use of Spring's `@Cache` annotations on a Spring MVC powered REST API.
 
+
 ## Used libraries ##
 
+The following is a list of most important libraries used in the demo:
 
 library | version | comment
 ----|------|----
@@ -56,3 +58,54 @@ Caching is applied on the service methods used by the REST controllers, which ar
 	INFO  SSMCache - Put 'CachePerson{id=3, firstName='Donald', lastName='Duck', version=0}' under key 3 to cache defaultCache
 	
 	INFO  SSMCache - Cache hit. Get by key 3 from cache defaultCache value 'CachePerson{id=3, firstName='Donald', lastName='Duck', version=0}'
+
+Corresponding JSON responses:
+
+	{
+	  "firstName" : "Donald",
+	  "lastName" : "Duck",
+	  "fetchTime" : 2009,
+	  "version" : 0,
+	  "cachePersonId" : 3,
+	  "links" : [ {
+		"rel" : "self",
+		"href" : "http://localhost:9090/rest/cache-persons/3"
+	  } ],
+	  "id" : 3
+	}
+
+
+	{
+	  "firstName" : "Donald",
+	  "lastName" : "Duck",
+	  "fetchTime" : 1,
+	  "version" : 0,
+	  "cachePersonId" : 3,
+	  "links" : [ {
+		"rel" : "self",
+		"href" : "http://localhost:9090/rest/cache-persons/3"
+	  } ],
+	  "id" : 3
+	}
+
+
+##Building and running the sample##
+
+Build the sample using maven:
+
+    mvn clean install
+    
+In the root of the project a `run.sh` script is provided which start the Spring based web archive (war) using Jetty or Tomcat webrunners, on port 9090. Edit the file to tweak this behavior or execute the java commands directly providing the proper arguments.
+
+    java -jar target/dependency/jetty-runner.jar --port 9090 target/*.war
+    java -jar target/dependency/webapp-runner.jar --port 9090 --expand-war target/*.war
+
+
+##External References##
+
+ * https://github.com/ragnor/simple-spring-memcached
+ * https://github.com/couchbase/spymemcached
+ * https://github.com/killme2008/xmemcached
+
+
+Thanks a lot to @ragnor for his support on getting the memcached backends properly configured using @Configuration !
