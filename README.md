@@ -103,9 +103,9 @@ In the root of the project a `run.sh` script is provided which start the Spring 
 
 ##External References##
 
- * https://github.com/ragnor/simple-spring-memcached
- * https://github.com/couchbase/spymemcached
- * https://github.com/killme2008/xmemcached
+ * [simple-spring-memcached](https://github.com/ragnor/simple-spring-memcached)
+ * [spymemcached](https://github.com/couchbase/spymemcached)
+ * [xmemcached](https://github.com/killme2008/xmemcached)
 
 
-Thanks a lot to @ragnor for his support on getting the memcached backends properly configured using @Configuration !
+Thanks a lot to [ragnor](https://github.com/ragnor) for his support on getting the memcached backends properly configured using Spring java `@Configuration` !
