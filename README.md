@@ -20,3 +20,39 @@ library | version | comment
  **webapp-runner** | 7.0.40.1 | Tomcat webrunner
 
 
+##Caching backends##
+
+The sample shows the use of 3 different caching backends:
+
+ * **EHCache** an in JVM caching solution
+ * **SpyMemcached** single threaded **memcached** based solution
+ * **XMemcached** multi threaded **memcahced** based solution
+
+A three caching backend are configured using the Spring Java based `@Configuration` method. Since only one backend is supported at a time, you will need to comment out the others to switch between backends (*spymemcached* is defaulted).
+
+Make sure you have memcached installed on your system before experimenting with the memcached based solutions:
+
+    sudo apt-get install memcached
+
+The memcached server address is configured using a property file `cache.properties`:
+
+    cache.server=127.0.0.1:11211
+
+
+##The sample##
+
+The demo sample provides two REST endpoints, to demonstrate the difference with or without caching:
+
+ * http://localhost:9090/rest/persons (none cached list of person)
+ * http://localhost:9090/rest/persons/3 (none cached person)
+ * http://localhost:9090/rest/cache-persons (cached list of person)
+ * http://localhost:9090/rest/cache-persons/3 (cached person)
+
+Caching is applied on the service methods used by the REST controllers, which are delayed (`sleep 2000`) in purpose the accentuate the difference. Debugging is enabled in `log4j.xml` to show cache hits/misses:
+
+	INFO  SSMCache - Cache miss. Get by key 3 from cache defaultCache
+	Hibernate: select cacheperso0_.id as id1_0_0_, cacheperso0_.first_name as first_na2_0_0_, cacheperso0_.last_name as last_nam3_0_0_, cacheperso0_.version as version4_0_0_ from person cacheperso0_ where cacheperso0_.id=?
+	INFO  CachePersonServiceImpl - Found cachePerson CachePerson{id=3, firstName='Donald', lastName='Duck', version=0} with id 3
+	INFO  SSMCache - Put 'CachePerson{id=3, firstName='Donald', lastName='Duck', version=0}' under key 3 to cache defaultCache
+	
+	INFO  SSMCache - Cache hit. Get by key 3 from cache defaultCache value 'CachePerson{id=3, firstName='Donald', lastName='Duck', version=0}'
