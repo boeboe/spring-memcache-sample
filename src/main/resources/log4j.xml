@@ -14,6 +14,22 @@
         <level value="DEBUG"/>
     </logger>
 
+    <logger name="com.google.code.ssm">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="net.sf.ehcache">
+        <level value="DEBUG"/>
+    </logger>
+
+    <!-- Enable lower layer debugging if needed -->
+    <!--<logger name="net.rubyeye.xmemcached">-->
+        <!--<level value="DEBUG"/>-->
+    <!--</logger>-->
+    <!--<logger name="net.spy.memcached">-->
+        <!--<level value="DEBUG"/>-->
+    <!--</logger>-->
+
     <root>
         <priority value="WARN"/>
         <appender-ref ref="console"/>

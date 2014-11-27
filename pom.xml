@@ -196,6 +196,11 @@
             <artifactId>spymemcached-provider</artifactId>
             <version>${simple-spring-memcached.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.simple-spring-memcached</groupId>
+            <artifactId>xmemcached-provider</artifactId>
+            <version>${simple-spring-memcached.version}</version>
+        </dependency>
 
         <!-- EHCache -->
         <dependency>
